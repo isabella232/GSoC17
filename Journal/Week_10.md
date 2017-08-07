@@ -269,4 +269,37 @@ it won't render any result for the branch with `fork(join(join()))`. Although
  this is an odd behavior because `join(join())` === `join()` this should be 
  handled.
  
- So I did a similar approach to the one used for `fork` and `junction`
+ So I used same procedure as for `junction` where only the tasks after the 
+ `fork` needed to be duplicated.
+  So, if we have:
+  
+  ```javascript
+join(task0, fork(task1, join(task2, task3)), task5)
+```
+
+Just needs to duplicate `task5` once, because there are only two elements inside
+ the fork (`task1` and `join(task2, task3)`).
+ 
+ Example pipeline:
+ 
+ ```javascript
+const pipeline = join(
+  task0,
+  fork(
+    join(
+      task4,
+      join(
+        task1,
+        task3,task6
+      )
+    ),
+    task2
+  ),
+  task5
+)
+```
+ 
+ Resulting pipeline
+
+ ![test](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_join/fork_join.png)
+
