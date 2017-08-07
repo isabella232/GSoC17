@@ -303,5 +303,6 @@ const pipeline = join(
 
  ![test](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_join/fork_join.png)
 
-** IMPORTANT: ** This will only work when junction and fork are wrapped 
-inside a `join()` (that is inside a `fork`).
+**IMPORTANT:** This will only work when junction and fork are wrapped 
+inside a `join()` (that is inside a `fork`). Also it will not work if we had 
+multiple more than 3 level of forks.
