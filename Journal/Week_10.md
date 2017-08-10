@@ -191,6 +191,9 @@ const pipeline = join(
 )
 ```
 
+Note: this is in fact broken with the changes to uids, also this was unstable
+ because it won't result for 4 nested forks. It was just too hardcoded...
+
  ![test](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_fork_example.png)
 
 
