@@ -1,5 +1,17 @@
 # Week 10 (3 August to 9 August)
 
+- [Summary](#summary)
+- [Progress](#progress)
+    - [Fork refactoring](#fork-refactoring)
+        - [Fork inside fork](#fork-inside-fork)
+            - [Going 'wild' with fork](#going-wild-with-fork)
+        - [Junction inside fork](#junction-inside-fork)
+        - [Join inside fork](#join-inside-fork)
+    - [Orchestrators uid](#orchestrator-uid)
+    - [Merkle tree like task uid](#merkle-tree-like-task-uid)
+- [What is missing?](#what-is-missing)
+        
+
 ## Summary
 
 In [last week issue with fork](https://github.com/bionode/GSoC17/blob/master/Journal/Week_9.md#fork-within-fork)
