@@ -1,4 +1,4 @@
-# Week 10 (3 August to 10 August)
+# Week 10 (3 August to 9 August)
 
 ## Summary
 
