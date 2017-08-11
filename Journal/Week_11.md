@@ -302,7 +302,7 @@ const pipeline4 = join(
       task4,
       fork(
         join(
-          task6,
+          task7,
           fork(
             task1,
             task3
@@ -324,6 +324,10 @@ Expected result:
 
 Actual result:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_pipeline4.png)
+
+In this `pipeline4` the double circled tasks are represented in the actual 
+pipeline that was ran but the other with no no double circle on them are not 
+being properly executed.
 
 ### Tests for 'orchestration'
