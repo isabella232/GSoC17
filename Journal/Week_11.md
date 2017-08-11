@@ -179,6 +179,14 @@ const pipeline2 = join(
 )
 ```
 
+Expected result:
+
+![]()
+
+Actual result:
+
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_pipeline2.png)
+
 First, I started by storing outermost task (`task5`) at the first fork 
 instance, and in order for not duplicating the effort of storing 
 `outermostTasks` more than once it is only stored at the end of first fork 
@@ -237,6 +245,14 @@ const pipeline3 = join(
   task5
 )
 ``` 
+
+Expected result:
+
+![]()
+
+Actual result:
+
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_pipeline3.png)
 
 It makes not much sense, because the above pipeline 
 could be simply:
