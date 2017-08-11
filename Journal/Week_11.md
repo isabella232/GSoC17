@@ -342,7 +342,10 @@ result for this pipeline.
 Now properly returns everything that is not an orchestrator inside the first 
 _inner_ fork.
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_pipeline4_result_correct.png)
+
+However it is still unknown at this stage if adding more complexity within 
+fork will properly work. More tests will come soon...
 
 
 ### Tests for 'orchestration'
