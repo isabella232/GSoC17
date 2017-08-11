@@ -152,10 +152,128 @@ handle this, otherwise it would become a `junction` without a junction vertex.
 
 **What is in fact missing?**
 
-With this I think if we create a new instance everytime there is a task 
+With this I think if we create a new instance every time there is a task 
 within forkee (in `join.js`) we can dispatch a new tasks for the outermost 
 task (in this case `task5`), but just once because we just need one `task5` 
 in each tip of the graph.
 
+**Update**
+
+First I started by handling a fork inside another fork (wrapped in a join):
+
+```javascript
+const pipeline2 = join(
+  task0,
+  fork(
+    join(
+      task4,
+        fork(
+          task1,
+          task3
+        ),
+      task6
+    ),
+    task2
+  ),
+  task5
+)
+```
+
+First, I started by storing outermost task (`task5`) at the first fork 
+instance, and in order for not duplicating the effort of storing 
+`outermostTasks` more than once it is only stored at the end of first fork 
+tasks parsing, i.e., when `task.info.tasks.length - 1 === j` where `j` is the
+ number of loop cycles for `task.info.tasks`.
+ 
+ Also, everything needs to be duplicated (in these case where there are only 
+ two branches for fork) for every `forkee` (branch of `fork`).
+ 
+ ```javascript
+ if (firstFork === true) {
+   // this if statement is used to store outermostTasks for inner
+   // orchestrators inside fork
+   console.log('test:', forkee.info, outermostTasks)
+   const newUpStreamTasks = taskCreationDispatcher(dispatch, upStreamTasks, task.info.uid, forkee.info.uid)
+   // if a task is found for outer fork it will dispatch the outer
+   // task as newUpStreamTasks, otherwise it will concat the other
+   // orchestrators
+   const lineage = [forkee].concat(newUpStreamTasks)
+   lineageGetter(dispatch, lineage, joinages)
+   // this is used to control when firstFork instance ends
+   if (j == task.info.tasks.length - 1) {
+     firstFork = false
+     outermostTasks = newUpStreamTasks
+   }
+ }
+```
+
+Besides that we still needed to add this stored `outermostTasks` to the to 
+the _inner_ `fork` within the _outer_ `fork`. But we have also to add the 
+`upstreamTasks` that may exist after this _outer_ `fork`:
+
+```javascript
+if (forkee.info.props) {
+  const newUpStreamTasks = taskCreationDispatcher(dispatch, upStreamTasks, task.info.uid, forkee.info.uid)
+  const newOutermostTasks = taskCreationDispatcher(dispatch, outermostTasks, task.info.uid, forkee.info.uid)
+  const lineage = [forkee].concat(newUpStreamTasks).concat(newOutermostTasks)
+  lineageGetter(dispatch, lineage, joinages)  
+}
+```
+
+However this did not handle the case where a `join` is not wrapping the inner
+ fork. One may wish to just fork after the fork, something like the following
+  pipeline:
+  
+  ```javascript
+const pipeline3 = join(
+  task0,
+  fork(
+      fork(
+        task1,
+        task3
+      ),
+      task6
+  ),
+  task5
+)
+``` 
+
+It makes not much sense, because the above pipeline 
+could be simply:
+
+```javascript
+const pipeline3 = join(
+  task0,
+  fork(task1, task3, task6),
+  task5
+)
+```
+
+However it should be possible to fork just after the fork. Therefore I added 
+to the above code the following rational.
+
+```javascript
+if (forkee.info.props) {
+  // this handles if fork is within fork without join wrapping
+  // the inner fork
+  if (outermostTasks.info !== upStreamTasks.info) {
+    const newUpStreamTasks = taskCreationDispatcher(dispatch, upStreamTasks, task.info.uid, forkee.info.uid)
+    const newOutermostTasks = taskCreationDispatcher(dispatch, outermostTasks, task.info.uid, forkee.info.uid)
+    // notice that if not within a fork it creates a lineage
+    // with the joint tasks plus the outermostTask with a new uid
+    const lineage = [forkee].concat(newUpStreamTasks).concat(newOutermostTasks)
+    lineageGetter(dispatch, lineage, joinages)
+  } else { // if a fork is found within another fork
+    // this avoids the duplication of the last task
+    const newOutermostTasks = taskCreationDispatcher(dispatch, outermostTasks, task.info.uid, forkee.info.uid)
+    // in the case of fork it simply adds to the forkee task the
+    // outermost task
+    // other orchestrators inside this structure will not render
+    // this lineage
+    const lineage = [forkee].concat(newOutermostTasks)
+    lineageGetter(dispatch, lineage, joinages)
+  }
+}
+```
 
 ### Tests for 'orchestration'
