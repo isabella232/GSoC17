@@ -114,7 +114,48 @@ const pipeline = join(
 Second way:
 
 ```javascript
-
+const pipeline2 = join(
+  task0,
+  fork(
+    join(
+      task4,
+        fork(
+          task1,
+          task3
+        )
+    ),
+    task2
+  ),
+  task5
+)
 ```
+
+In fact, the second way is the one that is intended for fork to work. 
+However, there is nothing against making the first approach. In fact, there 
+is a reason for doing the first one (for now...). It in fact works properly!
+
+Expected pipeline shape:
+
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_scheme_1.png)
+
+Result from first way with current api:
+
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/forking_the_noob_way.png)
+
+Result with second way:
+
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/forking_fork_style_error.png)
+
+So, in current api `taks5` isn't being correctly duplicated for each branch, 
+that is way manual handling it worked for the first way. Ideally `fork` should 
+handle this, otherwise it would become a `junction` without a junction vertex.
+
+**What is in fact missing?**
+
+With this I think if we create a new instance everytime there is a task 
+within forkee (in `join.js`) we can dispatch a new tasks for the outermost 
+task (in this case `task5`), but just once because we just need one `task5` 
+in each tip of the graph.
+
 
 ### Tests for 'orchestration'
