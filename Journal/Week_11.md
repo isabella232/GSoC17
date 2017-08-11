@@ -320,7 +320,7 @@ const pipeline4 = join(
 
 Expected result:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_pipeline4_expected.png)
 
 Actual result:
 
