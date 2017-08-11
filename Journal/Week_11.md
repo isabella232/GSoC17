@@ -347,7 +347,7 @@ _inner_ fork.
 However it is still unknown at this stage if adding more complexity within 
 fork will properly work. More tests will come soon...
 
-[x] Instance doesn't work inside _inner_ fork
+[x] Junction doesn't work inside _inner_ fork
 
    - The problem seems to be related with an absence of a check for 
    `upStreamTasks` which returns an empty array in the case of fork and then 
