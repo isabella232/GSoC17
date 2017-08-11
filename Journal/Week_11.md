@@ -351,12 +351,14 @@ fork will properly work. More tests will come soon...
 
    - The problem seems to be related with an absence of a check for 
    `upStreamTasks` which returns an empty array in the case of fork and then 
-   nothing is passed when doing
+   nothing is passed when doing. 
    
    ```javascript
 const newUpStreamTasks = taskCreationDispatcher(dispatch, upStreamTasks, task.info.uid, forkee.info.uid)
 const lineage = [forkee].concat(newUpStreamTasks)
 ```
+
+**Check pipeline5**!
 
 [ ] Add a fork level of fork doesn't end the pipeline properly?
 
