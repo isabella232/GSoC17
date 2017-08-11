@@ -181,7 +181,7 @@ const pipeline2 = join(
 
 Expected result:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_pipeline2_expected.png)
 
 Actual result:
 
@@ -248,7 +248,7 @@ const pipeline3 = join(
 
 Expected result:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_pipeline3_expected.png)
 
 Actual result:
 
