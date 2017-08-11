@@ -90,4 +90,31 @@ somehow similar `fork`.
  
 ### forkception
 
+After struggling for a while with trying to make fork work within fork, I 
+just realized that we can make fork work with fork in two distinct ways:
+
+First way:
+
+```javascript
+const pipeline = join(
+  task0,
+  fork(
+    join(task2,task5),
+    join(task4,
+      fork(
+        join(task1,task5),
+        join(task3,task5)
+      )
+    )
+  )
+)
+
+```
+
+Second way:
+
+```javascript
+
+```
+
 ### Tests for 'orchestration'
