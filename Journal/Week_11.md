@@ -292,4 +292,38 @@ if (forkee.info.props) {
 }
 ```
 
+Now, if I add a 3rd fork inside the _inner_ fork:
+
+```javascript
+const pipeline4 = join(
+  task0,
+  fork(
+    join(
+      task4,
+      fork(
+        join(
+          task6,
+          fork(
+            task1,
+            task3
+          )
+        )
+      ),
+      task6
+    ),
+    task2
+  ),
+  task5
+)
+
+```
+
+Expected result:
+
+![]()
+
+Actual result:
+
+![]()
+
 ### Tests for 'orchestration'
