@@ -307,15 +307,14 @@ const pipeline4 = join(
             task1,
             task3
           )
-        )
-      ),
-      task6
+        ),
+        task6
+      )
     ),
     task2
   ),
   task5
 )
-
 ```
 
 Expected result:
@@ -329,5 +328,21 @@ Actual result:
 In this `pipeline4` the double circled tasks are represented in the actual 
 pipeline that was ran but the other with no no double circle on them are not 
 being properly executed.
+
+Related commits: [d1a1d3d](https://github.com/bionode/bionode-watermill/commit/d1a1d3d3310eae60c2ccd1b9d6e7c91f753669fd)
+and [904748a](https://github.com/bionode/bionode-watermill/commit/904748a6da194026ffb6e23dd62dd0ec304d89a5)
+
+**Update 2**
+
+Third forkception is now possible!
+
+The `pipeline4` described above that should render the above represented expected 
+result for this pipeline.
+
+Now properly returns everything that is not an orchestrator inside the first 
+_inner_ fork.
+
+![]()
+
 
 ### Tests for 'orchestration'
