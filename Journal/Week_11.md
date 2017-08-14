@@ -361,6 +361,70 @@ const lineage = [forkee].concat(newUpStreamTasks).concat(newOutermostTasks)
 
 Check this [commit](https://github.com/bionode/bionode-watermill/commit/7089821df8ac4d6a76436797f872965cd3ae9b4c).
 
-* [ ] Add a fourth level of fork doesn't end the pipeline properly?
+Test pipeline:
+
+```javascript
+const pipeline5 = join(
+  task0,
+  fork(
+    join(
+      task4,
+      fork(
+        join(
+          task7,
+          junction(
+            task1,
+            task3
+          ),
+          task6
+        ),
+        task6
+      )
+    ),
+    task2
+  ),
+  task5
+)
+```
+
+* [x] Add a fourth level of fork doesn't end the pipeline properly?
+
+Yes, it works!
+
+Test pipeline: 
+
+```javascript
+const pipeline6 = join(
+  task0,
+  fork(
+    join(
+      task4,
+      fork(
+        join(
+          task7,
+          fork(
+            join(
+              task1,
+              fork(task3, task3_2)
+            ),
+            task8
+          )
+        ),
+        task6
+      )
+    ),
+    task2
+  ),
+  task5
+)
+```
+
+Expected result:
+
+
+
+Actual result:
+
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/4thlevel_fork.png)
 
 ### Tests for 'orchestration'
