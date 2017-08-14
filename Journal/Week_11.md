@@ -387,6 +387,18 @@ const pipeline5 = join(
 )
 ```
 
+Expected result:
+
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_junction_expected.png)
+
+Previous result:
+
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_junction_incomplete.png)
+
+Actual result:
+
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_junction.png)
+
 * [x] Add a fourth level of fork doesn't end the pipeline properly?
 
 Yes, it works!
@@ -421,7 +433,7 @@ const pipeline6 = join(
 
 Expected result:
 
-
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/4thlevel_fork_expected.png)
 
 Actual result:
 
