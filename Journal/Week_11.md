@@ -359,6 +359,8 @@ const newOutermostTasks = taskCreationDispatcher(dispatch, outermostTasks, task.
 const lineage = [forkee].concat(newUpStreamTasks).concat(newOutermostTasks)
 ```
 
+Check this [commit](https://github.com/bionode/bionode-watermill/commit/7089821df8ac4d6a76436797f872965cd3ae9b4c).
+
 * [ ] Add a fourth level of fork doesn't end the pipeline properly?
 
 ### Tests for 'orchestration'
