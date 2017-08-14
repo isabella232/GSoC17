@@ -525,7 +525,7 @@ const pipeline8_2 = join(
 )
 ```
 
-However, this approach did not worked for `fork` because it needed to 
+However, this approach did not work for `fork` because it needed to 
 properly generate `uid` for `task6` (in the example above). Previously, when 
 tasks are the same and 
 fork instance the same it could not render new `uid`s. Hence, `fork` needs 
