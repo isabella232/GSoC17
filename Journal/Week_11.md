@@ -478,4 +478,79 @@ Expected result:
 
 ![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/junction_after_fork.png)
 
+Both these examples result in a single node for the initial `task0` (before 
+`fork`). Although I have noticed that if within _inner_ forks `join`, 
+`junction` and even other `fork`s work. So there must be away to parse it 
+similarly in order to allow to duplicate this orchestrators when ran after 
+fork.
+
+#####The hack
+
+A way to work around this issue is by duplicating the contents inside a fork,
+ however this might be not very interesting for longer pipelines.
+
+```javascript
+// not working
+const pipeline7 = join(
+  task0,
+  fork(task4, task3),
+  task5,
+  fork(task1, task2),
+  task6
+)
+
+// previously not working... but now it is ok
+const pipeline7_2 = join(
+  task0,
+  fork(join(task4,task5,fork(task1,task2)), join(task3,task5,fork(task1,task2))),
+  task6
+)
+
+// not working
+const pipeline8 = join(
+  task0,
+  fork(task4, task3),
+  task5,
+  junction(task1, task2),
+  task6
+)
+
+// working
+const pipeline8_2 = join(
+  task0,
+  fork(join(task4, task5, junction(task1, task2)), join(task3,task5,junction(task1, task2))),
+  //task5,
+  //junction(task1, task2),
+  task6
+)
+```
+
+However, this approach did not worked for `fork` because it needed to 
+properly generate `uid` for `task6` (in the example above). Previously, when 
+tasks are the same and 
+fork instance the same it could not render new `uid`s. Hence, `fork` needs 
+to know `downStreamTasks` (which should be upstream in fact...) and generate 
+a unique `uid` that can be passed to `taskCreationDispatcher` function as an 
+argument for duplicating tasks, resulting in a different `uid`. 
+
+```javascript
+// gets downStreamTasks
+const downStreamTasks = tasks.slice(0, i)
+// puts the array of uids into a unique uid for each downStreamTasks
+const downStreamUids = downStreamTasks.map(
+  t => t.info.uid
+).reduce((a, b) => hash(a + b), 0)
+```
+
+Now, let's see the results with the workaround (which in fact was cool for 
+debugging an additional issue):
+
+Result with junction:
+
+![]()
+
+Result with fork:
+
+![]()
+
 ### Tests for 'orchestration'
