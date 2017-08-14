@@ -542,8 +542,18 @@ const downStreamUids = downStreamTasks.map(
 ).reduce((a, b) => hash(a + b), 0)
 ```
 
-Now, let's see the results with the workaround (which in fact was cool for 
-debugging an additional issue):
+Then `taskCreationDispatcher` needed to be slightly modified:
+
+```javascript
+taskCreationDispatcher(dispatch, taskInstance, forkUid, forkeeUid, downStreamUid)
+```
+
+With this approach upStream tasks `uid` make a `uid` that will be passed to 
+`taskCreationDispatcher` along with all the other `uids` used to generate 
+unique `uid`s for duplicated tasks within nested `fork`s.
+
+Now, finally let's see the results with the workaround (which in fact was cool 
+for debugging an additional issue):
 
 Result with junction:
 
