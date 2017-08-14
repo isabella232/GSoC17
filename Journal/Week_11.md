@@ -458,6 +458,22 @@ const pipeline7 = join(
 
 Expected result:
 
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_after_fork.png)
+
+**or**
+
+```javascript
+const pipeline8 = join(
+  task0,
+  fork(task4, task3),
+  task5,
+  junction(task1, task2),
+  task6
+)
+```
+
+Expected result:
+
 ![]()
 
 ### Tests for 'orchestration'
