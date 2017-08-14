@@ -439,4 +439,25 @@ Actual result:
 
 ![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/4thlevel_fork.png)
 
+* [ ] fork followed by other orchestrators
+
+This is currently not working because `taskCreationDispatcher` expects the 
+array to have just tasks and not orchestrators.
+
+For instance take the following pipeline:
+
+```javascript
+const pipeline7 = join(
+  task0,
+  fork(task4, task3),
+  task5,
+  fork(task1, task2),
+  task6
+)
+```
+
+Expected result:
+
+![]()
+
 ### Tests for 'orchestration'
