@@ -547,10 +547,10 @@ debugging an additional issue):
 
 Result with junction:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_junction_duplicated.png)
 
 Result with fork:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_duplicated_tasks.png)
 
 ### Tests for 'orchestration'
