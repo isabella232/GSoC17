@@ -439,6 +439,8 @@ Actual result:
 
 ![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/4thlevel_fork.png)
 
+#### Orchestrators after fork
+
 * [ ] fork followed by other orchestrators
 
 This is currently not working because `taskCreationDispatcher` expects the 
@@ -474,6 +476,6 @@ const pipeline8 = join(
 
 Expected result:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/junction_after_fork.png)
 
 ### Tests for 'orchestration'
