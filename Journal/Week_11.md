@@ -347,20 +347,18 @@ _inner_ fork.
 However it is still unknown at this stage if adding more complexity within 
 fork will properly work. More tests will come soon...
 
-[x] Junction doesn't work inside _inner_ fork
+* [x] Junction doesn't work inside _inner_ fork
 
-   - The problem seems to be related with an absence of a check for 
-   `upStreamTasks` which returns an empty array in the case of fork and then 
-   nothing is passed when doing. 
+   - The problem was that after the first fork, when `outermostTasks` are 
+   stored it should be appended to `lineage`:
    
-   ```javascript
-const newUpStreamTasks = taskCreationDispatcher(dispatch, upStreamTasks, task.info.uid, forkee.info.uid)
-const lineage = [forkee].concat(newUpStreamTasks)
+```javascript
+// first create a new task for this instance of junction
+const newOutermostTasks = taskCreationDispatcher(dispatch, outermostTasks, task.info.uid, forkee.info.uid)
+// then add it to lineage
+const lineage = [forkee].concat(newUpStreamTasks).concat(newOutermostTasks)
 ```
 
-**Check pipeline5**!
-
-[ ] Add a fork level of fork doesn't end the pipeline properly?
-
+* [ ] Add a fourth level of fork doesn't end the pipeline properly?
 
 ### Tests for 'orchestration'
