@@ -480,14 +480,14 @@ Expected result:
 
 Both these examples result in a single node for the initial `task0` (before 
 `fork`). Although I have noticed that if within _inner_ forks `join`, 
-`junction` and even other `fork`s work. So there must be away to parse it 
+`junction` and even other `fork`s work. So there must be a way to parse it 
 similarly in order to allow to duplicate this orchestrators when ran after 
 fork.
 
-#####The hack
+##### The hack
 
 A way to work around this issue is by duplicating the contents inside a fork,
- however this might be not very interesting for longer pipelines.
+ however this is not very interesting for longer pipelines.
 
 ```javascript
 // not working
@@ -548,7 +548,7 @@ Then `taskCreationDispatcher` needed to be slightly modified:
 taskCreationDispatcher(dispatch, taskInstance, forkUid, forkeeUid, downStreamUid)
 ```
 
-With this approach upStream tasks `uid` make a `uid` that will be passed to 
+With this approach upstream tasks `uid` make a `uid` that will be passed to 
 `taskCreationDispatcher` along with all the other `uids` used to generate 
 unique `uid`s for duplicated tasks within nested `fork`s.
 
