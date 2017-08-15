@@ -563,4 +563,26 @@ Result with fork:
 
 ![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_duplicated_tasks.png)
 
+### Defining upstream, downstream and outermost Tasks
+
+Throughout this and week 10 entries, I often refer to these tree groups of 
+tasks but perhaps it is not very clear. So here I will make a quick definiton
+ of each one of these groups of tasks
+ 
+ Everytime a `fork` is encountered there exist tasks before and after the 
+ corrent `task` in that `fork` instance. Tasks that precede the current `fork` 
+ task (or `forkee`) are called upstream Tasks (`upStreamTasks`). The tasks 
+ that follow a `forkee` are called downstream Tasks (`downStreamTasks`). 
+ 
+ On 
+ the other hand, outermost tasks `outermostTasks` is a store for an array of 
+ tasks that are after the first fork (so they are upstream tasks that are 
+ after the first fork). For storing 
+ these outermost tasks 
+ `join` wrapping `fork` is essential in current api, because otherwise we 
+ cannot get tasks outside `fork`.
+ 
+ Previously I have called downstream tasks as upstream tasks (by mistake). 
+ This was fixed in commit [ff59fce](https://github.com/bionode/bionode-watermill/commit/ff59fce1ba70087770163cc65e6c9e4fd1b308c3).
+
 ### Tests for 'orchestration'
