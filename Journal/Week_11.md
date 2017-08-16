@@ -587,6 +587,8 @@ tasks but perhaps it is not very clear. So here I will make a quick definiton
 
 ### Tests for 'orchestration'
 
+* [ ] TODO next week...
+
 ### Quick fix on example pipeline
 
 Capitalize example pipeline available in `examples/pipelines/capitalize` 
@@ -596,3 +598,62 @@ being executed rather than to `data/<uid>` folder therefore I have fixed this
  within the pipeline script. See [this](https://github.com/bionode/bionode-watermill/commit/2752153d222bcf2424cd505d3789b6e438ea1b1f) commit.
  
  * [ ] However this should somehow be handled by `bionode-watermill`.
+ 
+ While I was testing multiple input handling, I have noticed that in fact if 
+ we call a function with:
+ 
+ ```javascript
+const myTask = task({
+  input: '*.source.txt',
+  output: '*.sink.txt',
+  name: 'Capitalize alphabet'
+}, ( object ) => {
+    fs.createReadStream(input)
+      .pipe(through(function (chunk, enc, next) {
+        this.push(chunk.toString().toUpperCase())
+
+        next()
+      }))
+      .pipe(fs.createWriteStream(object.dir + '/alphabet.sink.txt'))
+  }
+)
+```
+ 
+ instead of:
+ 
+ ```javascript
+const myTask = task({
+  input: '*.source.txt',
+  output: '*.sink.txt',
+  name: 'Capitalize alphabet'
+}, ({ input }) => {
+    fs.createReadStream(input)
+      .pipe(through(function (chunk, enc, next) {
+        this.push(chunk.toString().toUpperCase())
+
+        next()
+      }))
+      .pipe(fs.createWriteStream(input.split('/').slice(0, -1).join('/') + '/alphabet.sink.txt'))
+  }
+)
+```
+
+Notice the difference in calling the input base path for bionode-watermill 
+generated symlinks and the variable that is passed to the function. If we 
+pass the entire `task` `object` we have an available object like this one:
+
+
+
+### Multiple input handling
+
+#### Within a task
+
+Multiple inputs of a given task is a reported issue [here](https://github.com/bionode/bionode-watermill/issues/65),
+however, and interestingly, I found something by mistake.
+
+Imagine we have two fasta files and we want to `cat` them. See this 
+[examples/pipelines/concat_files/pipeline.js]()
+
+So, usually we define a task as it follows
+
+#### Between tasks
