@@ -676,7 +676,7 @@ One awesome thing about bionode-watermill is the potential to execute several
  files and the potential to have different files in different processing 
  tasks. For instance, in a pipeline with 3 tasks, file1 might be in task 1
   while file2 might be in task 3, just because file1 is larger than file3. 
-  Therefore, the ability for process different files and get the results of a
+  Therefore, the ability to process different files and get the results of a
    given pipeline for each file independently is something we want to achieve.
    
    I have made a example script that uses current api to handle this kind of 
