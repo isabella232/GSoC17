@@ -682,6 +682,40 @@ One awesome thing about bionode-watermill is the potential to execute several
    I have made a example script that uses current api to handle this kind of 
    problem. The pipeline is available [here](https://github.com/bionode/bionode-watermill/commit/9bbb8ff904ba5d1d52490e87649424887b501574#diff-6ffff35b785a2d11f58cfb9397926d04).
    
+   Pipeline shape for each file
    
+   ```javascript
+   // concatTask takes each input file at a time
+join(concatTask, task0, fork(task1, task2)
+```
+
+Then is just a matter of making a loop through the desired files (for which 
+we can easily use javascript):
+
+```javascript
+// here I used npm modules 'fs' and 'path'
+fs.readdir(process.cwd(), (err, files) => {
+  files.forEach(infile => {
+    // checks file extension, in this case '.fas'
+    if (path.extname(infile) === '.fas') {
+      // executes the pipeline function for each infile
+      const pipelineMaster = pipeline(infile)
+      pipelineMaster()
+      // this is nice because in fact each pipelineMaster creates its own DAG
+    }
+  })
+})
+```
    
+   This is the resulting DAG:
+   
+   ![](https://github.com/bionode/GSoC17/blob/master/imgs/multi_input_pipeline.png)
+   
+   Notice how the two different input files rendered two independent DAGs? 
+   This is totally intentional! With this if a DAG finishes first we can get 
+   these 
+   results and start displaying them or using them in other way we may see fit.
+   
+   * [ ] Although `graphson.json` file gets messy, because only the last file 
+   to be processed will have the correct `graphson.json` file.
    
