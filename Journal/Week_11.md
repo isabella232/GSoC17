@@ -565,7 +565,7 @@ Result with fork:
 
 ### Defining upstream, downstream and outermost Tasks
 
-Throughout this and week 10 entries, I often refer to these tree groups of 
+Throughout this and week 10 entries, I often refer to these three groups of 
 tasks but perhaps it is not very clear. So here I will make a quick definiton
  of each one of these groups of tasks
  
