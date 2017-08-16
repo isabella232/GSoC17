@@ -595,4 +595,4 @@ wasn't properly resolving the output for the task it executes because `fs
 being executed rather than to `data/<uid>` folder therefore I have fixed this
  within the pipeline script. See [this](https://github.com/bionode/bionode-watermill/commit/2752153d222bcf2424cd505d3789b6e438ea1b1f) commit.
  
- However this should somehow be handled by `bionode-watermill`.
+ * [ ] However this should somehow be handled by `bionode-watermill`.
