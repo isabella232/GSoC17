@@ -642,7 +642,9 @@ Notice the difference in calling the input base path for bionode-watermill
 generated symlinks and the variable that is passed to the function. If we 
 pass the entire `task` `object` we have an available object like this one:
 
+![](https://github.com/bionode/GSoC17/blob/master/imgs/task_object.png)
 
+Including `dir` which points to the path to the `input` symlinks.
 
 ### Multiple input handling
 
@@ -652,8 +654,20 @@ Multiple inputs of a given task is a reported issue [here](https://github.com/bi
 however, and interestingly, I found something by mistake.
 
 Imagine we have two fasta files and we want to `cat` them. See this 
-[examples/pipelines/concat_files/pipeline.js]()
+[examples/pipelines/concat_files/pipeline.js](https://github.com/bionode/bionode-watermill/commit/fd960011ca27a6227048768b35829ef861e5368d#diff-7d08f7cf78304e6cf5f5f155ea0d2d07)
 
-So, usually we define a task as it follows
+Also, notice the above image where we have `input` as an Array of 
+length 2. This means that two files matched our pattern, which in this 
+pipeline is `*.fas`:
+
+![](https://github.com/bionode/GSoC17/blob/master/imgs/task_object_input.png)
+
+With this `input` that can be an array (when multiple inputs) or string (when
+ it is a single input)
+ we can use it to `cat` by returning as `task` function something like:
+ 
+ ```javascript
+ return `cat ${object.input.join(' ')} > ${object.params.output}`
+ ```
 
 #### Between tasks
