@@ -576,7 +576,7 @@ tasks but perhaps it is not very clear. So here I will make a quick definiton
  
  On 
  the other hand, outermost tasks `outermostTasks` is a store for an array of 
- tasks that are after the first fork (so they are upstream tasks that are 
+ tasks that are after the first fork (so they are downstream tasks that are 
  after the first fork). For storing 
  these outermost tasks 
  `join` wrapping `fork` is essential in current api, because otherwise we 
@@ -674,8 +674,8 @@ With this `input` that can be an array (when multiple inputs) or string (when
 
 One awesome thing about bionode-watermill is the potential to execute several
  files and the potential to have different files in different processing 
- stages. For instance, in a pipeline with 3 stages, file1 might be in stage 1
-  while file2 might be in stage 3, just because file1 is larger than file3. 
+ tasks. For instance, in a pipeline with 3 tasks, file1 might be in task 1
+  while file2 might be in task 3, just because file1 is larger than file3. 
   Therefore, the ability for process different files and get the results of a
    given pipeline for each file independently is something we want to achieve.
    
