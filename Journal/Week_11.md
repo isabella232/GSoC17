@@ -671,3 +671,17 @@ With this `input` that can be an array (when multiple inputs) or string (when
  ```
 
 #### Between tasks
+
+One awesome thing about bionode-watermill is the potential to execute several
+ files and the potential to have different files in different processing 
+ stages. For instance, in a pipeline with 3 stages, file1 might be in stage 1
+  while file2 might be in stage 3, just because file1 is larger than file3. 
+  Therefore, the ability for process different files and get the results of a
+   given pipeline for each file independently is something we want to achieve.
+   
+   I have made a example script that uses current api to handle this kind of 
+   problem. The pipeline is available [here](https://github.com/bionode/bionode-watermill/commit/9bbb8ff904ba5d1d52490e87649424887b501574#diff-6ffff35b785a2d11f58cfb9397926d04).
+   
+   
+   
+   
