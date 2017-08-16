@@ -679,7 +679,7 @@ One awesome thing about bionode-watermill is the potential to execute several
   Therefore, the ability to process different files and get the results of a
    given pipeline for each file independently is something we want to achieve.
    
-   I have made a example script that uses current api to handle this kind of 
+   I have made an example script that uses current api to handle this kind of 
    problem. The pipeline is available [here](https://github.com/bionode/bionode-watermill/commit/9bbb8ff904ba5d1d52490e87649424887b501574#diff-6ffff35b785a2d11f58cfb9397926d04).
    
    Pipeline shape for each file
