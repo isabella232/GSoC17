@@ -586,3 +586,13 @@ tasks but perhaps it is not very clear. So here I will make a quick definiton
  This was fixed in commit [ff59fce](https://github.com/bionode/bionode-watermill/commit/ff59fce1ba70087770163cc65e6c9e4fd1b308c3).
 
 ### Tests for 'orchestration'
+
+### Quick fix on example pipeline
+
+Capitalize example pipeline available in `examples/pipelines/capitalize` 
+wasn't properly resolving the output for the task it executes because `fs
+.createWriteStream` was outputting file to main folder where the script is 
+being executed rather than to `data/<uid>` folder therefore I have fixed this
+ within the pipeline script. See [this](https://github.com/bionode/bionode-watermill/commit/2752153d222bcf2424cd505d3789b6e438ea1b1f) commit.
+ 
+ However this should somehow be handled by `bionode-watermill`.
