@@ -37,24 +37,29 @@ to an
  shape ahead of running). Check [13 July to 20 
 July](https://github.com/bionode/GSoC17/blob/master/Journal/Week_7.md#execute-pipelines-inside-another-pipeline-as-a-task) and 
 [21 July to 26 July](https://github.com/bionode/GSoC17/blob/master/Journal/Week_8.md#execute-pipelines-inside-another-pipeline-as-a-task-cont).
-* CWL
-* use cases for streaming tasks (a | b | c), saving stdout to files, etc
-* Human input in certain tasks
-* Improve graph visualization to see in real-time which files already run and
+* [ ] CWL
+* [ ] use cases for streaming tasks (a | b | c), saving stdout to files, etc
+* [ ] Human input in certain tasks
+* [ ] Improve graph visualization to see in real-time which files already run
+ and
  where it is (marking it as green/red for instance whether or not task is done)
-* Ad hoc multi (input) dataset implementation --> each one runs in its own 
+* [x] Ad hoc multi (input) dataset implementation --> each one runs in its own 
 dag (first implementation).
 
 ## TODO
 
- - [ ] Arrange a way for a task to take several inputs (lets say several _*
+ - [x] Arrange a way for a task to take several inputs (lets say several _*
  .fas_ 
  - [ ] We need to check bionode-ncbi behavior within bionode-watermill since its 
  outputs are being generated outside `./data`, the expected main output 
  directory.
+ **Update**.
+ This can be now handled using `object.dir` on each task function (check [this
+  topic](https://github.com/bionode/GSoC17/blob/master/Journal/Week_11.md#quick-fix-on-example-pipeline)).
  - [ ] replace d3 graph visualization with some more appropriate model.
  - [ ] control graph using a CLI, rather than being executed by default.
- * [ ] Future implementation of logger must be passed through a CLI as described 
+ - [ ] Future implementation of logger must be passed through a CLI as 
+ described 
  [here](https://github.com/bionode/bionode-watermill/issues/31). For now, this
  is a quick fix for debugging purposes. Later, when we implement a CLI we have
   to have this into account.
