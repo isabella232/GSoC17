@@ -1,6 +1,28 @@
 # Week 11 (10 August to 16 August)
 
+- [Summary](#summary)
+- [Progress](#progress)
+    - [Tests fixing](#tests-fixing)
+        - [fork.spec.js](#forkspecjs)
+        - [junction.spec.js](#junctionspecjs)
+    - [Junction final vertex check](#junction-final-vertex-check)
+    - [forkception](#forkception)
+        - [Orchestrators after fork](#orchestrators-after-fork)
+            - [The hack](#the-hack)
+    - [Defining upstream, downstream and outermost Tasks](#defining-upstream-downstream-and-outermost-tasks)
+    - [Tests for 'orchestration'](#tests-for-orchestration)
+    - [Quick fix on example pipeline](#quick-fix-on-example-pipeline)
+    - [Multiple input handling](#multiple-input-handling)
+        - [Within a task](#within-a-task)
+        - [Between tasks](#between-tasks)
+
+
 ## Summary
+
+This week was dedicated to continue testing `fork` and solving the issues 
+regarding fork orchestration, solving tests issues, and finding away to 
+process multiple outputs. Also made a test to see if `junction` worked even if 
+there is no final task after it.
 
 ## Progress
 
@@ -563,11 +585,19 @@ Result with fork:
 
 ![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_duplicated_tasks.png)
 
+For now this hack must suffice because it will imply a full refactor of the 
+pipeline object or some hardcoded approach (which is not good). Also the 
+current implementation can benefit a lot if a pipeline object becomes 
+available before actually running watermill. This way it would be easier to 
+parse the pipeline, establish some rules for that pipeline and even generate 
+an expected DAG (graph) for the pipeline before actually running as it is 
+doing right now. 
+
 ### Defining upstream, downstream and outermost Tasks
 
 Throughout this and week 10 entries, I often refer to these three groups of 
 tasks but perhaps it is not very clear. So here I will make a quick definiton
- of each one of these groups of tasks
+ of each one of these groups of tasks.
  
  Everytime a `fork` is encountered there exist tasks before and after the 
  corrent `task` in that `fork` instance. Tasks that precede the current `fork` 
@@ -674,8 +704,9 @@ With this `input` that can be an array (when multiple inputs) or string (when
 
 One awesome thing about bionode-watermill is the potential to execute several
  files and the potential to have different files in different processing 
- tasks. For instance, in a pipeline with 3 tasks, file1 might be in task 1
-  while file2 might be in task 3, just because file1 is larger than file3. 
+ stages or tasks. For instance, in a pipeline with 3 tasks (and assuming two 
+ files - file 1 and file 2), file1 might be in task 1
+  while file2 might be in task 3. 
   Therefore, the ability to process different files and get the results of a
    given pipeline for each file independently is something we want to achieve.
    
@@ -718,4 +749,8 @@ fs.readdir(process.cwd(), (err, files) => {
    
    * [ ] Although `graphson.json` file gets messy, because only the last file 
    to be processed will have the correct `graphson.json` file.
+   * [ ] There is no way to control the firing of multiple tasks. As it is 
+   now if we do a for loop like this it can in fact consume all cpu and 
+   memory resources. Therefore, we need to document a way to limit this 
+   behavior.
    
