@@ -22,7 +22,7 @@
 This week was dedicated to continue testing `fork` and solving the issues 
 regarding fork orchestration, solving tests issues, and finding away to 
 process multiple outputs. Also made a test to see if `junction` worked even if 
-there is no final task after it.
+there is no final task after it. All this is within the scope of PR [#72](https://github.com/bionode/bionode-watermill/pull/72).
 
 ## Progress
 
