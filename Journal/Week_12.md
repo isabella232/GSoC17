@@ -66,7 +66,91 @@ use 5 threads.
      and you can have 20 files running same tasks at the same time.
      
 Also, this concurrency parameter can be passed through `process.argv` instead
- of hardcoding it inside the script.js.s
+ of hardcoding it inside the script.js.
 
 
+### Fixing fork nested in join inside another fork
 
+The following pipeline:
+
+```javascript
+const pipeline2 = join(
+  task0,
+  fork(
+    join(
+      task4,
+        fork(
+          task1,
+          task3
+        ),
+      task6
+    ),
+    task2
+  ),
+  task5
+)
+```
+
+Wasn't being properly executed, because `downstreamTasks` were not being 
+duplicated as they were supposed to. In commit [2934325](https://github.com/bionode/bionode-watermill/commit/293432584712d30f913c87c7611b3722ade55ae5)
+this behavior was fixed. Basically, `outermostTasks.info` and 
+`downStreamTasks.info` were `undefined` because `outermostTasks` and 
+`downStreamTasks` are in fact arrays rather than task objects where `.info` 
+is accessible. Therefore it was needed a way to compare both these arrays, 
+but even when tasks are the same their `uid` might differ, depending on its 
+`context.trajectory`. Therefore the only variable that is defined and 
+different in different tasks is `operationCreator`. Hence, I used each task 
+`operationCreator` in both arrays to generate an hash for each array. Then, 
+when the hashes from the two arrays (`outermostTasks` and `downStreamTasks`) 
+is equal we have a fork followed by another fork. But if these two hashes are
+ different then we have a fork nested in a join inside another fork.
+ 
+ So if equal it will properly render this pipeline:
+ 
+ ```javascript
+const pipeline3 = join(
+task0,
+fork(
+    fork(
+      task1,
+      task3
+    ),
+    task6
+),
+task5
+)
+```
+
+but if the two hashes are different, it will execute the code for a pipeline 
+like this:
+
+```javascript
+const pipeline2 = join(
+  task0,
+  fork(
+    join(
+      task4,
+        fork(
+          task1,
+          task3
+        ),
+      task6
+    ),
+    task2
+  ),
+  task5
+)
+```
+
+This issue was already reference in [previous week](https://github.com/bionode/GSoC17/blob/master/Journal/Week_11.md#forkception),
+although `downstreamTasks` where absent from the tests made. And here notice 
+that `task6` is a task that is inside the `downstreamTasks` array and it was 
+not being added to the graph because there was no code to properly handle this.
+
+Expected result:
+
+![]()
+
+Actual result:
+
+![]()
