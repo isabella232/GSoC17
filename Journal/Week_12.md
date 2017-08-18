@@ -149,8 +149,8 @@ not being added to the graph because there was no code to properly handle this.
 
 Expected result:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_join_fork_fix_exp.png)
 
 Actual result:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_join_fork_fix_res.png)
