@@ -309,5 +309,5 @@ const task4 = task(
 
 This will render the following pipeline(s) shape:
 
-
+![](https://github.com/bionode/GSoC17/blob/master/imgs/pipeline_after_another.png)
 
