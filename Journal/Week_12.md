@@ -154,3 +154,82 @@ Expected result:
 Actual result:
 
 ![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_join_fork_fix_res.png)
+
+### Tests for forkception
+
+#### fork inside fork, wrapped in join
+
+Added a test that tests for the existance of a fork inside another fork and 
+check if it renders the appropriate number of edges and vertices
+ in 
+[this commit](https://github.com/bionode/bionode-watermill/pull/73/commits/aa182b27ed683c40d244ea607500e63c982726f6#diff-5922682f49c3344eec99d28dd70031ec).
+
+This example should work:
+
+```javascript
+const pipeline = join(task1, fork(task2, join(task2, fork(task3, task4))), 
+tasak5)
+```
+
+#### fork inside fork, without join wrapping
+
+A similar test, that checks for edges and vertices, was added to check if 
+this works properly ([commit](https://github.com/bionode/bionode-watermill/pull/73/commits/aa182b27ed683c40d244ea607500e63c982726f6#diff-67b4d5d3ea1c32216d4133d376f5d6c5)).
+
+Although this might be an odd pipeline it should be properly resolved:
+
+```javascript
+const pipeline = join(task1, fork(task2, fork(task3, task4)), task5)
+```
+
+### junction inside fork
+
+Another test was added to check junction when inside a fork (see [this commit](https://github.com/bionode/bionode-watermill/pull/73/commits/aa182b27ed683c40d244ea607500e63c982726f6#diff-e28ce03431eaab6457a088286cec0158))
+
+This tests the execution of a pipeline like this:
+
+```javascript
+const pipeline = join(
+  task0,
+  fork(
+    join(
+      task1,
+      junction(
+        task2,
+        task3
+      ),
+      task4
+    ),
+    task5
+  ),
+  task6
+)
+```
+
+This test, checks if a junction node exists and if both end nodes of junction
+ exist. It also checks if the expected number of edges and vertices exist 
+ after the pipeline execution
+
+#### final note on all these tests
+
+All these tests rely on the execution of each others because the total number
+ of nodes and vertices for tests are cumulative, i.e., each pipeline executed
+  in tests are being added to graph, as if it is a single pipeline with 
+  multiple subpipelines. This behavior was unintentional but it unveiled a 
+  nice hint on how to handle a pipeline that runs a bunch of tasks in a `fork` 
+  like manner until the end of fork shape, but that can take middle tasks to 
+  perform other tasks.
+  
+  So something like this:
+  
+  ```javascript
+// pipeline that executes something using fork
+const pipeline = join(task0, fork(task1, task2), task3)
+
+// then other task to be executed that joins the results from task1 and task2
+const pipeline2 = someOtherTask
+
+// tentative execution
+
+pipeline.then(pipeline2)
+```
