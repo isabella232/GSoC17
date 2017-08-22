@@ -7,7 +7,7 @@
 * [ ] what needs to be done yet
 * [ ] link to issues
 
-## Notebook weekly reports
+## Notebook week reports
 
 During my GSoC progress was tracked in weekly reports. Here you can find the 
 12 reports:
