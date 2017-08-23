@@ -27,7 +27,8 @@ During my GSoC progress was tracked in weekly reports. Here you can find the
 
 ## Merged Pull Requests (PRs) and brief explanation
 
-* [PR #48](https://github.com/bionode/bionode-watermill/pull/48) - correct path to home folder
+* [PR #48](https://github.com/bionode/bionode-watermill/pull/48) - Correct 
+path to home folder
 
 PR #48 corrects pipelines path to properly get bionode-watermill lib, which 
 was previously broken.
@@ -64,9 +65,61 @@ information.
 
 This is a small PR that fixed a logging of the `task` name.
 
-* [PR #59](https://github.com/bionode/bionode-watermill/pull/59) - Transfered experimental branch for development of graph
+* [PR #59](https://github.com/bionode/bionode-watermill/pull/59) - Transferred experimental branch for development of graph
 
-To be continued...
+This PR adds a manifest file implementation that logs graph structure to a 
+file and started implementing [graphson](https://github.com/tinkerpop/blueprints/wiki/GraphSON-Reader-and-Writer-Library) like structure to graph.
+
+* [PR #61](https://github.com/bionode/bionode-watermill/pull/61) - Implemented redux-logger given an environmental variable
+
+This PR adds `redux-logger` to be easier to debug issues regarding actions and 
+states. Now we can use `REDUX_LOGGER=1 node pipeline.js` to log `redux` 
+related actions and states to console. This is particularly cool with chrome 
+nodejs V8 [inspector](https://chrome.google.com/webstore/detail/nodejs-v8-inspector-manag/gnhhdgbaldcilmgcpfddgdbkhjohddkj?hl=en). 
+
+* [PR #62](https://github.com/bionode/bionode-watermill/pull/62) - Implemented a graph visualization
+
+This PR added a `d3` visualization for pipeline shape in which `graphson` 
+`vertices` are represented as d3 nodes and `graphson` `edges` are represented
+ as links. This visualization is available when pipeline is executed and 
+ final graphson visualization can be obtained at the end of the run. `d3` 
+ visualization nodes also have some metadata regarding tasks definition and 
+ execution, such as `uid`, `resolvedInput`, `resolvedOutput`, `name` and 
+ `params`. Visualization used `socket.io` to emit data to `localhost:8084`.
+ 
+ * [PR #64](https://github.com/bionode/bionode-watermill/pull/64) - Added operation command to graphson
+ 
+ This PR added `operationString` to `d3` visualization.
+ 
+ * [PR #67](https://github.com/bionode/bionode-watermill/pull/67) - Edits to 
+ two-mappers pipeline and removed of redundant defaultTask
+ 
+ This PR edited two-mappers pipeline to follow bionode-watermill philosophy 
+ (removed pipes from commands passed to shell and removed hardcoded file 
+ names from `input`). Also, removed duplicated definition of `defaultTask` 
+ that was not being executed under `lib/reducers/task.js`.
+ 
+ * [PR #70](https://github.com/bionode/bionode-watermill/pull/70) - Orchestrators refactoring and fork handling other orchestrators
+ 
+ This PR handles orchestrators working inside other orchestrators, implements
+  merkle tree like task `uid` generation which allows for tasks to be 
+  duplicated within the scope of a pipeline. Orchestrators get a similar 
+  structure with `uid`. Also a couple of new tests were added in order to 
+  test pipeline shape given different combinations of orchestrators.
+  
+* [PR #72](https://github.com/bionode/bionode-watermill/pull/72) - Going deeper on fork orchestration
+
+This PR increases the cases where `fork` work, because until this PR `fork` just 
+worked with other level of `fork` (e.g. `fork(fork())`). Also some other 
+examples were added on how to handle multiple inputs and concurrency between 
+multiple inputs, which allow to have some control over CPU and memory resources.
+
+* [PR #73](https://github.com/bionode/bionode-watermill/pull/73) - Add another test for fork within fork wrapped in join
+
+This PR fixed a case where fork inside other forks nested in joins and adds 
+tests for `travis` and `codecov`.
+
+* DOCS
 
 ## What wasn't done and why
 
