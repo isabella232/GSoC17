@@ -129,9 +129,8 @@ tests for `travis` and `codecov`.
 
 ## What needs to be done yet
 
-## Issues
-
-* [#74](https://github.com/bionode/bionode-watermill/issues/74) - Refactor pipeline parsing
+* [Issue #74](https://github.com/bionode/bionode-watermill/issues/74) - 
+Refactor pipeline parsing
 
 This issue is important in order to get pipeline shape before running the 
 pipeline itself within bionode-watermill. We can then check pipeline proper 
@@ -139,7 +138,8 @@ execution using visualization, improve the visualization itself to show what
 have ran (green node), is running (yellow node), not run yet (blue node) and 
 failed running (red node).
 
-* [#75](https://github.com/bionode/bionode-watermill/issues/75) - Refactor 
+* [Issue #75](https://github.com/bionode/bionode-watermill/issues/75) - 
+Refactor 
 task definition
 
 This issue suggests that task definition becomes more javascript independent 
