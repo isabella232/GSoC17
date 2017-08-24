@@ -352,7 +352,7 @@ that is a combined uid of:
 uid: hash(orchestratorUidGenerator(tasks).join(''))
 ```
 
-where `orchestratorUidGenerator` is a [module](https://github.com/bionode/bionode-watermill/blob/orchestrators_tests/lib/orchestrators/orchestrator-uid-generator.js) that is imported by `join.js`, 
+where `orchestratorUidGenerator` is a [module](https://github.com/bionode/bionode-watermill/blob/dev/lib/orchestrators/orchestrator-uid-generator.js) that is imported by `join.js`, 
 `junction.js` and `fork.js`, and which basically gathers all uids for all 
 tasks inside these orchestrators and returns a new unique id for each 
 orchestrator:

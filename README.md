@@ -125,8 +125,39 @@ This PR updates current documentation in [bionode-watermill gitbook](https://the
 
 ## What wasn't done and why
 
-* STREAMS
-* Metrics
+Unfortunately time grew short and definition of directed acyclic graph (DAG) 
+took longer than previously expected. For instance, complex combination of 
+orchestrators were never previously tested and they needed to be properly 
+ruled for the tool to be usable in the maximum number of possible use cases.
+
+Moreover, the tool has to become usable by anyone that shows interest in 
+joining our community and thus documentation was required, both updating the 
+existing docs as well as adding new pipelines that are well documented (e.g. 
+[two-mappers pipeline](https://github.com/bionode/bionode-watermill/tree/dev/examples/pipelines/two-mappers)) and 
+[bionode-watermill tutorial](https://github.com/bionode/bionode-watermill-tutorial).
+Before adding more complexity to the tool we now aimed to make it more 
+accessible to users.
+
+Therefore, there was no time to implement:
+
+* Streams between tasks - this required that all orchestrators behaved more 
+similarl to each other. Therefore a similar structure was made for the three 
+orchestrators (as reported in [Week 9](https://github.com/bionode/GSoC17/blob/master/Journal/Week_9.md#consistency-of-junction-and-fork)).
+Also fork needed to be more consistent before adding more complexity to the 
+API, since in many example pipelines that I experimented in 
+`examples/pipelines/tests` it did not worked has expected and thus some 
+handling of fork rules had to be performed (check
+[Week 9](https://github.com/bionode/GSoC17/blob/master/Journal/Week_9.md) 
+and
+[Week 10](https://github.com/bionode/GSoC17/blob/master/Journal/Week_10.md#what-is-missing) 
+and
+[Week 11](https://github.com/bionode/GSoC17/blob/master/Journal/Week_11.md) 
+and
+[Week 12](https://github.com/bionode/GSoC17/blob/master/Journal/Week_12.md) 
+).
+
+* Metrics - although this may have workarounds using bluebird module as 
+exemplified in [Week 12 report](https://github.com/bionode/GSoC17/blob/master/Journal/Week_12.md#scheduling-inputs-into-pipeline).
 * Improved validation
 
 ## What needs to be done yet
