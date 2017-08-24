@@ -119,7 +119,9 @@ multiple inputs, which allow to have some control over CPU and memory resources.
 This PR fixed a case where fork inside other forks nested in joins and adds 
 tests for `travis` and `codecov`.
 
-* DOCS
+* [PR #76](https://github.com/bionode/bionode-watermill/pull/76) - Docs update
+
+This PR updates current documentation in [bionode-watermill gitbook](https://thejmazz.gitbooks.io/bionode-watermill/content/)
 
 ## What wasn't done and why
 
