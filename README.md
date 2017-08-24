@@ -158,7 +158,7 @@ and
 
 * Metrics - although this may have workarounds using bluebird module as 
 exemplified in [Week 12 report](https://github.com/bionode/GSoC17/blob/master/Journal/Week_12.md#scheduling-inputs-into-pipeline).
-* Improved validation
+* Improved validation - [make issue - checks for file size, file extension]
 
 ## What needs to be done yet
 
