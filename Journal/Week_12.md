@@ -353,3 +353,12 @@ for (const sra of config.sraAccession) {
 actual result:
 
 ![](https://github.com/bionode/GSoC17/blob/master/imgs/multiple_input_bug_two-mappers.png)
+
+So, as can be observed in the above image, there is a complete pipeline for 
+one of the input samples, however in the second graph there is just sample 
+download and `fastqDump`ing. It looks like junction is not properly resolved.
+ That may have occurred because `getReference` task will have the same `uid` 
+ (same parent processes and same `props` to generate `uid`)
+ as for the first file and then is prevented to run twice (this is in fact is
+  an ok behavior because we want to avoid duplicating the effort and cpu 
+  resources). However, we have to be able to deal with this in some other way...
