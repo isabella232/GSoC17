@@ -185,3 +185,9 @@ This issue was added since current visualization tool is still a first
 implementation and may be further developed. Despite being already useful for
  debugging pipelines execution, it can be improved if we had success/failure 
  checks on tasks and input/output flow to the visualization.
+ 
+* [Issue #78](https://github.com/bionode/bionode-watermill/issues/78) - Tasks as npm modules
+
+This is a proposal for tasks being transformed into npm modules that require 
+`bionode-watermill` module and that could be imported into new 
+bionode-watermill pipelines.
