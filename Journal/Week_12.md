@@ -352,4 +352,4 @@ for (const sra of config.sraAccession) {
 
 actual result:
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/imgs/multiple_input_bug_two-mappers.png)
