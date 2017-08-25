@@ -311,3 +311,45 @@ This will render the following pipeline(s) shape:
 
 ![](https://github.com/bionode/GSoC17/blob/master/imgs/pipeline_after_another.png)
 
+## Trying to run multiple inputs on two-mappers pipelines
+
+While trying to run multiple samples in two-mappers pipelines (check pipeline
+ [here](https://github.com/bionode/bionode-watermill/commit/52bc65113263306365d8fc8c3a2930cde6c4defe#diff-226988dfd1c614fa76e7cd646ee76b93)),
+I found that a pipeline is properly created for one of the samples but the 
+second sample just starts the download and executes `fastqDump` but then 
+`getReference` is not executed again (as expected given that this task `uid` 
+is the same for the two files):
+
+```javascript
+// where config is defined
+const config = {
+  name: 'Streptococcus pneumoniae',
+  sraAccession: ['ERR045788', 'ERR016633'],
+  referenceURL: 'http://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/007/045/GCF_000007045.1_ASM704v1/GCF_000007045.1_ASM704v1_genomic.fna.gz'
+}
+
+// === PIPELINE ===
+
+const pipeline = (sraAccession) => join(
+  junction(
+      getReference, // maybe this can done in another task outside this
+    // pipeline... then hardcode the path?
+      join(getSamples(sraAccession),fastqDump)
+  ),
+  gunzipIt,
+  fork(
+    join(indexReferenceBwa, bwaMapper),
+    join(indexReferenceBowtie2, bowtieMapper)
+  )
+)
+// actual run pipelines and return results
+for (const sra of config.sraAccession) {
+  console.log("sample:", sra)
+  const pipelineMaster = pipeline(sra)
+  pipelineMaster()
+}
+```
+
+actual result:
+
+![]()
