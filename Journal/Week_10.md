@@ -410,7 +410,7 @@ Then was just a matter of executing this function before task dispatching in
 const newUid = childHashesToUid(context, uid)
 ```
 
-And then task creation is dispatched (check it [here](https://github.com/bionode/bionode-watermill/blob/orchestrators_tests/lib/task.js#L63)).
+And then task creation is dispatched (check it [here](https://github.com/bionode/bionode-watermill/blob/dev/lib/task.js#L63)).
 
 ## What is missing?
 
