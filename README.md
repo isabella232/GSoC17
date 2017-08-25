@@ -178,3 +178,10 @@ task definition
 This issue suggests that task definition becomes more javascript independent 
 and more user friendly. The ultimate goal would be to abstract the users from 
 javascript at all when assembling their pipelines.
+
+* [Issue #77](https://github.com/bionode/bionode-watermill/issues/77) - Improvements to visualization tool
+
+This issue was added since current visualization tool is still a first 
+implementation and may be further developed. Despite being already useful for
+ debugging pipelines execution, it can be improved if we had success/failure 
+ checks on tasks and input/output flow to the visualization.
