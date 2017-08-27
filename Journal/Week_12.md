@@ -437,3 +437,20 @@ As expeted executing first `getReference` makes bionode-watermill lose the
 reference to the outputs of the tasks run in other pipeline that run before.
 
 ---
+
+The above mentioned issues can be fixed if we "hardcode" the path to the 
+input of `gunzipIt` task:
+
+```javascript
+// first lets uncompress the gz
+const gunzipIt = task({
+    input: process.cwd() + '/*_genomic.fna.gz',
+    output: '*.fna'
+  }, ({ input }) => {
+  console.log("gunzipit:", input)
+  return `gunzip -c ${input} > ${input.split('.')[0]}.fna`
+  }
+)
+```
+
+However I still get: `traverse got undefined, returning`.
