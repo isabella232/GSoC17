@@ -398,7 +398,33 @@ underwhelming. It looks like that it cannot reference to the outputs of
 `getReference`, which are stored in `/data`. **It looks like the different 
 "pipelines" cannot reference each other outputs...**
 
+In fact, the problem seems a bit similar to the above attempt since it cannot
+ get `getReference` outputs in both cases when executing the second pipeline.
+  wither through cycling or by running the task as an independent pipeline.
+
 *Result:*
 
 ![](https://github.com/bionode/GSoC17/blob/master/imgs/two-mappers-multiinput-firstref.png)
 
+---
+
+But now, if we run the same pipeline shape but just for one sample, if my 
+hypothesis is correct it should not resolve the pipeline again.
+
+```javascript
+// first gets reference
+getReference().then(results => {
+  const pipeline = (sraAccession, referenceFile) => join(
+    getSamples(sraAccession),
+    fastqDump,
+    gunzipIt(referenceFile),
+    fork(
+      join(indexReferenceBwa, bwaMapper),
+      join(indexReferenceBowtie2, bowtieMapper)
+    )
+  )
+// here it has to be modified because it has only one sample and no array
+  const pipelineMaster = pipeline(config.sraAccession, results.resolvedOutput)
+  pipelineMaster()
+})
+```
