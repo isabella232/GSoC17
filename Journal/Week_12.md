@@ -397,3 +397,8 @@ was no longer required). However the final result of this is somehow
 underwhelming. It looks like that it cannot reference to the outputs of 
 `getReference`, which are stored in `/data`. **It looks like the different 
 "pipelines" cannot reference each other outputs...**
+
+*Result:*
+
+![](https://github.com/bionode/GSoC17/blob/master/imgs/two-mappers-multiinput-firstref.png)
+
