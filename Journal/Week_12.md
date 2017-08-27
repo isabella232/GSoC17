@@ -493,4 +493,4 @@ _graphson.json_
 
 _last logged redux state_
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/imgs/redux_state_throughtask.png)
