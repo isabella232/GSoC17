@@ -1,11 +1,9 @@
 # GSoC17 Final Report
 
-* [x] links to each nodebook entry
-* [x] links to merged PRs
-* [ ] links to merged PRs in bionode-watermill docs
-* [ ] what wasn't done and why
-* [ ] what needs to be done yet
-* [ ] link to issues
+- [Notebook week reports](#notebook-week-reports)
+- [Merged pull requests](#merged-pull-requests)
+- [What was not done and why](#what-was-not-done-and-why)
+- [What needs to be done yet](#what-needs-to-be-done-yet)
 
 ## Notebook week reports
 
@@ -25,7 +23,7 @@ During my GSoC progress was tracked in weekly reports. Here you can find the
 * [Week 11](https://github.com/bionode/GSoC17/blob/master/Journal/Week_11.md)
 * [Week 12](https://github.com/bionode/GSoC17/blob/master/Journal/Week_12.md)
 
-## Merged Pull Requests (PRs) and brief explanation
+## Merged pull requests
 
 * [PR #48](https://github.com/bionode/bionode-watermill/pull/48) - Correct 
 path to home folder
@@ -123,7 +121,7 @@ tests for `travis` and `codecov`.
 
 This PR updates current documentation in [bionode-watermill gitbook](https://thejmazz.gitbooks.io/bionode-watermill/content/)
 
-## What wasn't done and why
+## What was not done and why
 
 Unfortunately time grew short and definition of directed acyclic graph (DAG) 
 took longer than previously expected. For instance, complex combination of 
@@ -156,9 +154,13 @@ and
 [Week 12](https://github.com/bionode/GSoC17/blob/master/Journal/Week_12.md) 
 ).
 
-* Metrics - although this may have workarounds using bluebird module as 
+* Metrics to control the workflow - although this may have workarounds using 
+bluebird module as 
 exemplified in [Week 12 report](https://github.com/bionode/GSoC17/blob/master/Journal/Week_12.md#scheduling-inputs-into-pipeline).
-* Improved validation - [make issue - checks for file size, file extension]
+
+* Improved validation - Although some validators already exist in current 
+API, we could pass new custom validators that allow the user to contror, for 
+example, file size and extension (Issue [#80](https://github.com/bionode/bionode-watermill/issues/80)). 
 
 ## What needs to be done yet
 
@@ -191,3 +193,13 @@ implementation and may be further developed. Despite being already useful for
 This is a proposal for tasks being transformed into npm modules that require 
 `bionode-watermill` module and that could be imported into new 
 bionode-watermill pipelines.
+
+* [Issue #79](https://github.com/bionode/bionode-watermill/issues/79) - Streaming Between Tasks
+
+As referenced above this goal was delayed because of orchestrators control 
+but this is a _must have feature_ for the project and thus we opened a new 
+issue that addresses this topic.
+
+* [Issue #80](https://github.com/bionode/bionode-watermill/issues/80) - 
+
+This issue opens a new discussion on how to pass custom file validators.
