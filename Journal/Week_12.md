@@ -1,6 +1,26 @@
 # Week 12 (17 August to 28 August)
 
+- [Summary](#summary)
+- [Progress](#progress)
+    - [Scheduling inputs into pipeline](#scheduling-inputs-into-pipeline)
+    - [Fixing fork nested in join inside another fork](#fixing-fork-nested-in-join-inside-another-fork)
+    - [Tests for forkception](#tests-for-forkception)
+        - [fork inside fork, wrapped in join](#fork-inside-fork-wrapped-in-join)
+        - [fork inside fork, without join wrapping](#fork-inside-fork-without-join-wrapping)
+    - [junction inside fork](#junction-inside-fork)
+    - [final note on all these tests](#final-note-on-all-these-tests)
+    - [execution of pipelines after another](#execution-of-pipelines-after-another)
+    - [Trying to run multiple inputs on two-mappers pipelines](#trying-to-run-multiple-inputs-on-two-mappers-pipelines)
+    - [Through tasks](#through-tasks)
+    - [Documentation](#documentation)
+
 ## Summary
+
+This week was mainly dedicated to documentation and in the meanwhile some 
+other tests were executed, ranging from concurrency tests, some more test 
+cases for forkception, pipelines inside other pipelines, multiple inputs on 
+two-mappers pipeline and testing a through task from 
+`examples/pipelines/capitalize`.
 
 ## Progress
 
@@ -210,7 +230,7 @@ This test, checks if a junction node exists and if both end nodes of junction
  exist. It also checks if the expected number of edges and vertices exist 
  after the pipeline execution
 
-#### final note on all these tests
+### final note on all these tests
 
 All these tests rely on the execution of each others because the total number
  of nodes and vertices for tests are cumulative, i.e., each pipeline executed
@@ -311,7 +331,7 @@ This will render the following pipeline(s) shape:
 
 ![](https://github.com/bionode/GSoC17/blob/master/imgs/pipeline_after_another.png)
 
-## Trying to run multiple inputs on two-mappers pipelines
+### Trying to run multiple inputs on two-mappers pipelines
 
 While trying to run multiple samples in two-mappers pipelines (check pipeline
  [here](https://github.com/bionode/bionode-watermill/commit/52bc65113263306365d8fc8c3a2930cde6c4defe#diff-226988dfd1c614fa76e7cd646ee76b93)),
@@ -494,3 +514,7 @@ _graphson.json_
 _last logged redux state_
 
 ![](https://github.com/bionode/GSoC17/blob/master/imgs/redux_state_throughtask.png)
+
+### Documentation
+
+Documentation is fully described in PR [#76](https://github.com/bionode/bionode-watermill/pull/76).
