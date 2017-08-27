@@ -205,3 +205,20 @@ issue that addresses this topic.
 * [Issue #80](https://github.com/bionode/bionode-watermill/issues/80) - Improve validators over input/output files
 
 This issue opens a new discussion on how to pass custom file validators.
+
+* [Issue #81](https://github.com/bionode/bionode-watermill/issues/81) - 
+Through tasks not properly logging
+
+This issue raises aweareness to a very experimental feature in 
+bionode-watermill and that despite working well for a single task renders 
+some odd behavior in logging to both `graphson.json` and for the d3 
+visualization tool available at `localhost:8084`.
+
+* [Issue #82](https://github.com/bionode/bionode-watermill/issues/82) - 
+Execution of a pipeline following other pipeline
+
+This was something that I was trying to accomplish at the very end of 
+my GSoC but could not do. For now, I just know that files used in other 
+pipelines 
+that are `.then` run in the next pipeline seem to be unable to properly be 
+executed in the downstream pipeline.
