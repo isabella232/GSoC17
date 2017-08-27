@@ -428,3 +428,12 @@ getReference().then(results => {
   pipelineMaster()
 })
 ```
+
+*Result:*
+
+![](https://github.com/bionode/GSoC17/blob/master/imgs/multiinput_two-mappers-onein.png)
+
+As expeted executing first `getReference` makes bionode-watermill lose the 
+reference to the outputs of the tasks run in other pipeline that run before.
+
+---
