@@ -454,3 +454,43 @@ const gunzipIt = task({
 ```
 
 However I still get: `traverse got undefined, returning`.
+
+### Through tasks
+
+Although bionode-watermill does not yet stream between tasks we were willing 
+to know how through tasks worked, so I user `pipelines/examples/capitalize`. 
+We can notice that this pipeline properly works. I just changed the input 
+file to be a more friendly _hello world_.
+
+Also, and something to take into account in the future, I noticed that this 
+pipeline cannot generate a node in d3 graph visualization under 
+`localhost:8084`. Also, `resolvedInput` is not logged to graphson but 
+`resolvedOutput` is. Redux states allways have resovled input though, but 
+somehow in the middle of the _through_ it gets lost.
+
+_graphson.json_
+
+```javascript
+{
+  "graph": {
+    "mode": "NORMAL",
+    "vertices": [
+      {
+        "_id": "a022b2d1413314aa38d4facdef16cc947b27c84e17dcf4a5c540ec96ed50298e",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "name": "Capitalize alphabet",
+          "resolvedOutput": "/home/tiago/bin/bionode-watermill/examples/pipelines/capitalize/data/a022b2d/alphabet.sink.txt",
+          "params": {}
+        }
+      }
+    ],
+    "edges": []
+  }
+}
+```
+
+_last logged redux state_
+
+![]()
