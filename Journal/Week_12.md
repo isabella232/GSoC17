@@ -362,3 +362,38 @@ download and `fastqDump`ing. It looks like junction is not properly resolved.
  as for the first file and then is prevented to run twice (this is in fact is
   an ok behavior because we want to avoid duplicating the effort and cpu 
   resources). However, we have to be able to deal with this in some other way...
+
+---
+
+But if the pipeline is called like this:
+
+```javascript
+// === PIPELINE ===
+
+// first gets reference
+getReference().then(results => {
+  const pipeline = (sraAccession, referenceFile) => join(
+    getSamples(sraAccession),
+    fastqDump,
+    gunzipIt(referenceFile),
+    fork(
+      join(indexReferenceBwa, bwaMapper),
+      join(indexReferenceBowtie2, bowtieMapper)
+    )
+  )
+// then fetches the samples and executes the remaining pipeline
+  for (const sra of config.sraAccession) {
+    console.log("sample:", sra)
+    const pipelineMaster = pipeline(sra, results.resolvedOutput)
+    pipelineMaster()
+  }
+})
+
+```
+
+Note that here first I attempted to call `getReference` in order to run it 
+just once and then execute the pipeline with a few tweaks (since `junction` 
+was no longer required). However the final result of this is somehow 
+underwhelming. It looks like that it cannot reference to the outputs of 
+`getReference`, which are stored in `/data`. **It looks like the different 
+"pipelines" cannot reference each other outputs...**

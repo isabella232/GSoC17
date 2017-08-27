@@ -5,6 +5,8 @@
 - [What was not done and why](#what-was-not-done-and-why)
 - [What needs to be done yet](#what-needs-to-be-done-yet)
 
+ ---
+ 
 ## Notebook week reports
 
 During my GSoC progress was tracked in weekly reports. Here you can find the 
@@ -200,6 +202,6 @@ As referenced above this goal was delayed because of orchestrators control
 but this is a _must have feature_ for the project and thus we opened a new 
 issue that addresses this topic.
 
-* [Issue #80](https://github.com/bionode/bionode-watermill/issues/80) - 
+* [Issue #80](https://github.com/bionode/bionode-watermill/issues/80) - Improve validators over input/output files
 
 This issue opens a new discussion on how to pass custom file validators.
