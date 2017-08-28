@@ -562,11 +562,12 @@ the result is truly what I intended here:
 
 _Result_
 
-![]()
+![](https://github.com/bionode/GSoC17/blob/master/imgs/pipeline_after_another_multi.png)
 
 Notice how there is only one vertex for the `getReference` task and two 
 independent pipelines for each one of the input files (with the same shape 
-although with a funny inverted pattern thanks to d3 directed forces).
+although with a funny inverted pattern thanks to d3 directed forces). Check 
+the [commit](https://github.com/bionode/bionode-watermill/pull/76/commits/974d58d601af82b970ffd78b941290a0dc4dd918) that adds these changes to the `two-mappers` pipeline.
 
 ### Through tasks
 
