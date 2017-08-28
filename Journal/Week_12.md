@@ -545,7 +545,28 @@ once given that we have only one input (in this case):
 
 _Result:_
 
+![](https://github.com/bionode/GSoC17/blob/master/imgs/pipeline_after_another_solved.png)
+
+Now, let's try with multiple input samples as I was attempting before:
+
+```javascript
+const config = {
+  name: 'Streptococcus pneumoniae',
+  sraAccession: ['ERR045788', 'ERR016633'],
+  referenceURL: 'http://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/007/045/GCF_000007045.1_ASM704v1/GCF_000007045.1_ASM704v1_genomic.fna.gz'
+}
+```
+
+Just needed to add another sra to the config and run the same pipeline. And 
+the result is truly what I intended here:
+
+_Result_
+
 ![]()
+
+Notice how there is only one vertex for the `getReference` task and two 
+independent pipelines for each one of the input files (with the same shape 
+although with a funny inverted pattern thanks to d3 directed forces).
 
 ### Through tasks
 
