@@ -85,9 +85,9 @@ provided at the end of the tutorial for those that may struggle to understand
  (https://github.com/bionode/bionode-watermill-tutorial/issues/2)).
  I.e. explain how glob patterns are fetching files and how can we declare the
   output.
- - [ ] Arrange a way for a task to take several inputs (lets say several _*
+ - [x] Arrange a way for a task to take several inputs (lets say several _*
  .fas_ 
  files) and create a single output, since this is the case of many 
  bioinformatics pipelines. Of course, this should also be documented and 
- further explained. 
+ further explained (check [Week 11](https://github.com/bionode/GSoC17/blob/master/Journal/Week_11.md#multiple-input-handling)). 
  

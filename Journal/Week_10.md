@@ -7,7 +7,7 @@
             - [Going 'wild' with fork](#going-wild-with-fork)
         - [Junction inside fork](#junction-inside-fork)
         - [Join inside fork](#join-inside-fork)
-    - [Orchestrators uid](#orchestrator-uid)
+    - [Orchestrators uid](#orchestrators-uid)
     - [Merkle tree like task uid](#merkle-tree-like-task-uid)
 - [What is missing?](#what-is-missing)
         
@@ -275,7 +275,7 @@ duplicated once (for the _outer_ `fork` but not for `junction`). Besides that
 
 result:
 
- ![test](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_junction.png)
+ ![](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_junction/fork_junction.png)
 
 #### Join inside fork
 
@@ -414,8 +414,8 @@ And then task creation is dispatched (check it [here](https://github.com/bionode
 
 ## What is missing?
 
-* [ ] fork work within fork - maybe `newUpStreamTasks` isn't creating 
+* [x] fork work within fork - maybe `newUpStreamTasks` isn't creating 
 unique ids for forks within forks which makes tasks after the first fork 
 rendering just one instance of that task and not properly duplicating or for 
 each task within a fork (if another fork is found inside fork - enough of 
-forkception for now!).
+forkception for now!). This issue was further addressed in [Week 11](https://github.com/bionode/GSoC17/blob/master/Journal/Week_11.md#forkception).

@@ -50,7 +50,7 @@ However, graphson expects something like:
 Right now, I am not sure if graphson will be able to handle this different 
 in vertex object! **UPDATE**: This isn't in fact a limitation... so nevermind.
 
-So, I managed to hack current `jsonifyGraph` function (see [code](tiagofilipe12/bionode-watermill@d20e79f)),
+So, I managed to hack current `jsonifyGraph` function (see [code](https://github.com/bionode/bionode-watermill/blob/master/lib/reducers/collection.js#L60-L78)),
 basically by creating a new object `graphsonObj` in which the previous `obj` 
  elements could be inserted. However, it seems not to be working properly 
  since in some cases with fork it seems to be rendering duplicated vertices.
@@ -136,9 +136,10 @@ This will render an object like this:
 
 ### Needing improvements
 
-* [x]Pass other variables to vertices and edges information like tasks `input`, 
+* [x] Pass other variables to vertices and edges information like tasks 
+`input`, 
 `output`, `params`.
-* [x]There is an issue in which only one output in `params.output` is being 
+* [x] There is an issue in which only one output in `params.output` is being 
 passed to `graphsonObj.graph.vertices.outputs`. This is problematic when 
 `params.output` is a list. Same may be valid for `input` and `output` (solved).
 * [x] As it is now, graph object is generated within `jsonifyGraph` and this 

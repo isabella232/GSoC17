@@ -205,8 +205,9 @@ not solve the problem with bionode-ncbi rendering output folders outside main
  
 ## Needing improvements
  
-* [ ] bionode-ncbi output folder.
-* [ ] replace d3 graph visualization with some more appropriate model.
+* [x] bionode-ncbi output folder.
+* [ ] replace d3 graph visualization with some more appropriate model ([Issue #77](https://github.com/bionode/bionode-watermill/issues/77)).
 * [ ] control graph using a CLI, rather than being executed by default.
+([Issue #31](https://github.com/bionode/bionode-watermill/issues/31))
  
  

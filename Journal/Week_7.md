@@ -4,7 +4,7 @@
 - [Progress](#progress)
     - [Optional tasks](#optional-tasks)
         - [The comment workaround](#the-comment-workaround)
-        - [Using nodejs process.argv](using-nodejs-process-argv)
+        - [Using nodejs process.argv](using-nodejs-processargv)
     - [Execute pipelines inside another pipeline as a task](#execute-pipelines-inside-another-pipeline-as-a-task)
 - [Removal of redundant code](#removal-of-redundant-code)
 

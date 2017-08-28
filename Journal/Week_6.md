@@ -4,7 +4,7 @@
 - [Progress](#progress)
     - [resolvedInput](#resolvedinput)
     - [operationString](#operationstring)
-- [TODO](#todo)
+- [Pending](#pending)
 
 ## Summary
 
@@ -88,7 +88,7 @@ to each task, the task itself must be ran for the first time, otherwise it
 will not have `resolvedInput` (because watermill checks if `resolvedOutput` 
 already exists for a given task). So, `resolvedInput` was added to graphson by 
 using its definition in `taskState` (check it [here](https://github.com/bionode/bionode-watermill/blob/master/lib/reducers/collection.js#L200)
-and [here](https://github.com/bionode/bionode-watermill/blob/master/lib/reducers/collection.js#L125).
+and [here](https://github.com/bionode/bionode-watermill/blob/master/lib/reducers/collection.js#L125)).
 
 
 ### operationString
@@ -109,9 +109,11 @@ Until now, there were no operationString instance in default task state, thus
 Final implementation of the `graphson` visualization can be checked in [#62](https://github.com/bionode/bionode-watermill/pull/62)
 and in [#64](https://github.com/bionode/bionode-watermill/pull/64/files) for the setting of `operationString`.
 
-## TODO
+## Pending
 
-* [ ] Future implementation of logger must be passed through a CLI as described 
-[here](https://github.com/bionode/bionode-watermill/issues/31). For now, this
+* [ ] Future implementation of logger must be passed through a CLI as 
+described in
+[Issue #31](https://github.com/bionode/bionode-watermill/issues/31). For now, 
+this
 is a quick fix for debugging purposes. Later, when we implement a CLI we have
  to have this into account.

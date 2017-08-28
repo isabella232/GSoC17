@@ -8,7 +8,7 @@
         - [join](#join)
         - [junction](#junction)
         - [fork](#fork)
-- [TODO](#todo)
+- [Pending](#pending)
 
 ## Summary
 
@@ -93,7 +93,7 @@ coming from. Right now edges are being outputted to `graphson.json` according
   documented, because after fork we cannot merge the results coming from 
   different branches.
   
-  ## TODO
+  ## Pending
   
   * [x] Test junction inside a junction - other solution (works but check 
   [this](https://github.com/bionode/GSoC17/blob/master/Journal/Week_9.md#junction-inside-junction))

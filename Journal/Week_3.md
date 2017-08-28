@@ -1,9 +1,9 @@
 # Week 3 (15 June to 22 June)
 
 - [Summary](#summary)
-- [Summary_log.txt](#summary-log-txt)
+- [Summary_log.txt](#summary-logtxt)
     - [Linking folders and tasks](#linking-folders-and-tasks)
-    - [I/O and params](#i-o-and-params)
+    - [I/O and params](#io-and-params)
 - [What can be improved?](#what-can-be-improved)
 
 ## Summary
@@ -95,9 +95,16 @@ So, the output is NDJSON like file, following the philosophy of other
   
 ## What can be improved?
 
-- [ ] We need to check bionode-ncbi behavior within bionode-watermill since its 
+- [x] We need to check bionode-ncbi behavior within bionode-watermill since its 
 outputs are being generated outside `./data`, the expected main output 
 directory.
+
+_Explanation_
+
+This behabior happens when this task is the first one, and therefore 
+bionode-watermill searches for the inputs in `process.cwd()`, i.e., _current 
+working directory_.
+
 - [x] Output should include the actual files that are the input and output 
 (resolvedInput and resolvedOutput).
 - [x] It should be added the 'command' that is run by each task.

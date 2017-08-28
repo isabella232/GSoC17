@@ -10,7 +10,6 @@
         - [Orchestrators after fork](#orchestrators-after-fork)
             - [The hack](#the-hack)
     - [Defining upstream, downstream and outermost Tasks](#defining-upstream-downstream-and-outermost-tasks)
-    - [Tests for 'orchestration'](#tests-for-orchestration)
     - [Quick fix on example pipeline](#quick-fix-on-example-pipeline)
     - [Multiple input handling](#multiple-input-handling)
         - [Within a task](#within-a-task)
@@ -615,10 +614,6 @@ tasks but perhaps it is not very clear. So here I will make a quick definiton
  Previously I have called downstream tasks as upstream tasks (by mistake). 
  This was fixed in commit [ff59fce](https://github.com/bionode/bionode-watermill/commit/ff59fce1ba70087770163cc65e6c9e4fd1b308c3).
 
-### Tests for 'orchestration'
-
-* [ ] TODO next week...
-
 ### Quick fix on example pipeline
 
 Capitalize example pipeline available in `examples/pipelines/capitalize` 
@@ -749,8 +744,9 @@ fs.readdir(process.cwd(), (err, files) => {
    
    * [ ] Although `graphson.json` file gets messy, because only the last file 
    to be processed will have the correct `graphson.json` file.
-   * [ ] There is no way to control the firing of multiple tasks. As it is 
+   * [x] There is no way to control the firing of multiple tasks. As it is 
    now if we do a for loop like this it can in fact consume all cpu and 
    memory resources. Therefore, we need to document a way to limit this 
-   behavior.
+   behavior. There is a simple solution that users may use and it is 
+   documented in [Week 12](https://github.com/bionode/GSoC17/blob/master/Journal/Week_12.md#scheduling-inputs-into-pipeline).
    
