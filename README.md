@@ -1,11 +1,16 @@
 # GSoC17 Final Report
 
+- [Summary](#summary)
 - [Notebook week reports](#notebook-week-reports)
 - [Merged pull requests](#merged-pull-requests)
 - [What was not done and why](#what-was-not-done-and-why)
 - [What needs to be done yet](#what-needs-to-be-done-yet)
 
  ---
+ 
+## Summary
+
+ 
  
 ## Notebook week reports
 
@@ -121,7 +126,7 @@ tests for `travis` and `codecov`.
 
 * [PR #76](https://github.com/bionode/bionode-watermill/pull/76) - Docs update
 
-This PR updates current documentation in [bionode-watermill gitbook](https://thejmazz.gitbooks.io/bionode-watermill/content/)
+This PR updates current documentation in [bionode-watermill gitbook](https://bionode.gitbooks.io/bionode-watermill/content/)
 
 ## What was not done and why
 
