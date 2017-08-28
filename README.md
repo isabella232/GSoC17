@@ -10,6 +10,16 @@
  
 ## Summary
 
+This is my final report for the Google Summer of Code aka GSoC. I started 
+this GSoC by first getting a feel from the user perspective of 
+bionode-watermill and as the time passed (and I was starting to get more 
+comfortable with the code),
+ I start learning how the API works and how it can be improved. The following
+  [reports]((#notebook-week-reports)) clarify the progress that was made and have a detailed explanation 
+  on why and how modifications were being added to the previous API.
+  
+  Below, I also made a list of all pull requests made, and a list of issues 
+  still needs work to improve current bionode-watermill API.
  
  
 ## Notebook week reports
